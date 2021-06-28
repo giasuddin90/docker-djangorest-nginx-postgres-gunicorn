@@ -1,0 +1,54 @@
+version: "3"
+
+services:
+  db:
+    container_name: blog_db
+    image: postgres:12.3
+    restart: always
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    env_file: ./.env.docker
+    networks:
+      - blog_net
+
+  web:
+    container_name: blog_django
+    build: .
+    restart: always
+    command: gunicorn dockerDjango.wsgi:application --bind 0.0.0.0:8000
+    expose:
+      - 8000
+    volumes:
+      - media_data:/app/media
+      - static_data:/app/static
+    env_file:
+      - .env
+    depends_on:
+      - db
+    links:
+      - db:db
+    networks:
+      - blog_net
+
+  nginx:
+    container_name: blog_nginx
+    build: ./nginx
+    restart: always
+    ports:
+      - 8086:80
+    depends_on:
+      - web
+    volumes:
+    - media_data:/media
+    - static_data:/static
+    networks:
+      - blog_net
+
+volumes:
+  media_data:
+  static_data:
+  postgres_data:
+
+networks:
+  gkyc_net:
+    driver: bridge
