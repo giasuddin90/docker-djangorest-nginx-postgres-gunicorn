@@ -50,5 +50,5 @@ volumes:
   postgres_data:
 
 networks:
-  gkyc_net:
+  blog_net:
     driver: bridge
