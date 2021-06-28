@@ -1,6 +1,9 @@
 # Docker-django-nginx-postgres-gunicorn boilerplate
 This repository you can for any python django rest project. just add new app.
 
+If you love this project give me a star,that will motivate me to create more.
+-------------------------------------------
+
 
 Copy `.env.example` file to `.env`
 -------------------------------------------
