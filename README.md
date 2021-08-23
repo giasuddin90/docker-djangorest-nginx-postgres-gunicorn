@@ -1,5 +1,6 @@
 # Docker-django-nginx-postgres-gunicorn boilerplate
-This repository you can for any python django rest project. just add new app.
+This repository you can for any python django rest project. just add new app. We create this project by using
+django rest, postgresql, nginx and gunicorn
 
 If you love this project give me a star,that will motivate me to create more.
 -------------------------------------------
